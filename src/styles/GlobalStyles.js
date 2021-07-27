@@ -31,11 +31,11 @@ export default StyleSheet.create({
         paddingTop: Platform.OS === 'android' ? 40 : 0
     },
     button: {
-        //backgroundColor: Colors.primary,
+        backgroundColor:'#fff',
         paddingVertical: 15,
         paddingHorizontal: 35,
         borderRadius: 20,
         marginVertical: 10,
-        marginHorizontal: 10
+        marginHorizontal: 10,
       },
 });
