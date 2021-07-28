@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, Alert, View,FlatList ,Keyboard} from 'react-native';
+import { StyleSheet, Text, Alert,Image, View,FlatList ,Keyboard} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign'; 
 import GlobalStyles from '../styles/GlobalStyles';
 import Theme from '../styles/Theme';
@@ -29,8 +29,8 @@ export function Home( { navigation} ) {
       const obj = {
         id: data.id,
         nome: data.name,
+        avatar_url: data.avatar_url,
         login: data.login,
-        
       }
 
       setUsers( oldValue => [...oldValue, obj ] );
@@ -47,8 +47,7 @@ export function Home( { navigation} ) {
     } 
   }
   async function deletar(id, index) {
-    //const newData = gits.filter(item => item.id != id);
-    users.splice(index, 1)
+    users.splice(index, 1)//Se nenhum elemento foi removido, spliceretornará um array vazio
     //setUsers(users); 
     await AsyncStorage.setItem(keyAsyncStorage, JSON.stringify(users));
     await loadData()
@@ -57,7 +56,7 @@ export function Home( { navigation} ) {
     try {
       const retorno = await AsyncStorage.getItem(keyAsyncStorage);
       const dadosGits = await JSON.parse(retorno)
-      console.log('loadData -> ', dadosGits);
+      //console.log('loadData -> ', dadosGits);
       setUsers(dadosGits || []);
     } catch (error) {
       Alert.alert("Erro na leitura  dos gitss");
@@ -76,11 +75,11 @@ export function Home( { navigation} ) {
       <Input placeholder="Digite o nickname do usuário"  onChangeText={setNickname} 
        onPress={ handleSearchUser } />
 
-     
+  
       <FlatList  data={users}  
           keyExtractor={item => item.id.toString()} 
           renderItem={ ({item, index}) =>  (
-              <ItemGit name={item.login} onPress={ () => navigationDetails( item.login , index)}/>
+              <ItemGit name={item.login} avatar_url={item.avatar_url} onPress={ () => navigationDetails( item.login , index)}/>
           ) }
       />  
     </View>
@@ -93,5 +92,6 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontFamily: Theme.fonts.robotoBold,
     color: Theme.colors.primary,
-  }
+  },
+  
 })

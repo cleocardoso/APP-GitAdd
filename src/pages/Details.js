@@ -4,10 +4,10 @@ import { ButtonDelete } from '../components/ButtonDelete';
 import GlobalStyles from '../styles/GlobalStyles';
 import Theme from '../styles/Theme';
 import api from '../services/Api';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Foundation from 'react-native-vector-icons/Foundation'
 
 export function Details({ route, navigation }) {
 

@@ -21,7 +21,7 @@ export function Input({placeholder,onPress,onChangeText}) {
 const styles = StyleSheet.create({
     container:{
         marginTop:40,
-        width: '90%',
+        width: '100%',
         height: 65,
         backgroundColor: '#FFFFFF',
         flexDirection:'row',
